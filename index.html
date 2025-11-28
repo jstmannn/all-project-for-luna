@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome Portal</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary: #6366f1;
+      --primary-dark: #4f46e5;
+      --secondary: #ec4899;
+      --accent: #8b5cf6;
+      --bg-gradient-1: #0f172a;
+      --bg-gradient-2: #1e293b;
+      --card-bg: rgba(255, 255, 255, 0.05);
+      --card-border: rgba(255, 255, 255, 0.1);
+      --text-primary: #f8fafc;
+      --text-secondary: #cbd5e1;
+      --shadow: rgba(0, 0, 0, 0.3);
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, var(--bg-gradient-1) 0%, var(--bg-gradient-2) 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-primary);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Animated Background */
+    body::before {
+      content: '';
+      position: absolute;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(99, 102, 241, 0.1) 1px, transparent 1px);
+      background-size: 50px 50px;
+      animation: moveGrid 20s linear infinite;
+      z-index: 0;
+    }
+
+    @keyframes moveGrid {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(50px, 50px); }
+    }
+
+    /* Floating Orbs */
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(60px);
+      opacity: 0.3;
+      animation: float 15s ease-in-out infinite;
+      z-index: 0;
+    }
+
+    .orb1 {
+      width: 300px;
+      height: 300px;
+      background: var(--primary);
+      top: 10%;
+      left: 20%;
+      animation-delay: 0s;
+    }
+
+    .orb2 {
+      width: 250px;
+      height: 250px;
+      background: var(--secondary);
+      bottom: 20%;
+      right: 15%;
+      animation-delay: 5s;
+    }
+
+    .orb3 {
+      width: 200px;
+      height: 200px;
+      background: var(--accent);
+      top: 50%;
+      right: 30%;
+      animation-delay: 10s;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      33% { transform: translate(30px, -30px) scale(1.1); }
+      66% { transform: translate(-20px, 20px) scale(0.9); }
+    }
+
+    /* Container */
+    .container {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 1200px;
+      padding: 20px;
+    }
+
+    /* Login Page */
+    .login-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    .login-box {
+      background: var(--card-bg);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--card-border);
+      padding: 50px 40px;
+      border-radius: 24px;
+      width: 100%;
+      max-width: 420px;
+      box-shadow: 0 20px 60px var(--shadow);
+      animation: slideUp 0.6s ease-out;
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .login-box h2 {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .login-box p {
+      color: var(--text-secondary);
+      margin-bottom: 32px;
+      font-size: 15px;
+    }
+
+    .input-group {
+      margin-bottom: 20px;
+      position: relative;
+    }
+
+    .input-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-secondary);
+    }
+
+    .input-group input {
+      width: 100%;
+      padding: 14px 18px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      color: var(--text-primary);
+      font-size: 15px;
+      transition: all 0.3s ease;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .input-group input:focus {
+      outline: none;
+      border-color: var(--primary);
+      background: rgba(255, 255, 255, 0.08);
+      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+    }
+
+    .input-group input::placeholder {
+      color: #64748b;
+    }
+
+    .btn-primary {
+      width: 100%;
+      padding: 14px;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      border: none;
+      border-radius: 12px;
+      color: white;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-top: 8px;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(99, 102, 241, 0.4);
+    }
+
+    .btn-primary:active {
+      transform: translateY(0);
+    }
+
+    /* Dashboard */
+    .dashboard {
+      display: none;
+      animation: fadeIn 0.6s ease-out;
+    }
+
+    .dashboard.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .dashboard-header {
+      text-align: center;
+      margin-bottom: 50px;
+      animation: slideDown 0.6s ease-out;
+    }
+
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .dashboard-header h1 {
+      font-size: 42px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .dashboard-header p {
+      color: var(--text-secondary);
+      font-size: 16px;
+    }
+
+    .music-control {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .music-btn {
+      padding: 12px 32px;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid var(--card-border);
+      border-radius: 50px;
+      color: var(--text-primary);
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .music-btn:hover {
+      background: rgba(255, 255, 255, 0.15);
+      transform: scale(1.05);
+    }
+
+    .music-btn::before {
+      content: '🎵';
+      font-size: 18px;
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background: var(--card-bg);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--card-border);
+      padding: 32px 28px;
+      border-radius: 20px;
+      text-decoration: none;
+      color: var(--text-primary);
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+      animation: cardAppear 0.6s ease-out forwards;
+      opacity: 0;
+    }
+
+    .card:nth-child(1) { animation-delay: 0.1s; }
+    .card:nth-child(2) { animation-delay: 0.2s; }
+    .card:nth-child(3) { animation-delay: 0.3s; }
+    .card:nth-child(4) { animation-delay: 0.4s; }
+
+    @keyframes cardAppear {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      z-index: -1;
+    }
+
+    .card:hover::before {
+      opacity: 0.1;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      border-color: var(--primary);
+      box-shadow: 0 20px 60px rgba(99, 102, 241, 0.3);
+    }
+
+    .card-icon {
+      font-size: 36px;
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .card-title {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .card-description {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    footer {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 13px;
+      color: var(--text-secondary);
+      z-index: 10;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .login-box {
+        padding: 40px 30px;
+      }
+
+      .dashboard-header h1 {
+        font-size: 32px;
+      }
+
+      .cards-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+  <div class="orb orb3"></div>
+
+  <!-- Login Page -->
+  <div class="login-container" id="loginPage">
+    <div class="login-box">
+      <h2>Selamat Datang! 👋</h2>
+      <p>Login untuk mengakses kenangan dari rohman</p>
+      <form id="loginForm">
+        <div class="input-group">
+          <label>Username</label>
+          <input type="text" id="username" placeholder="Masukkan username" required>
+        </div>
+        <div class="input-group">
+          <label>Password</label>
+          <input type="password" id="password" placeholder="Masukkan password" required>
+        </div>
+        <button type="submit" class="btn-primary">Masuk</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Dashboard -->
+  <div class="container dashboard" id="dashboardPage">
+    <div class="dashboard-header">
+      <h1>Selamat Datang, <span id="userName">Puput</span>! ✨</h1>
+      <p>Website ini isinya tentang semua project yang aku pernah buat untuk kamu</p>
+    </div>
+
+    <div class="music-control">
+      <button class="music-btn" id="musicBtn">Putar Musik</button>
+    </div>
+
+    <div class="cards-grid">
+      <a href="projects/gift-for-putri/kado/index.html" class="card">
+        <span class="card-icon">💐</span>
+        <span class="card-title">Bunga dari Rohman</span>
+        <span class="card-description">Buket bunga virtual yang indah, dibuat khusus untuk kamu</span>
+      </a>
+      
+      <a href="projects/ice-cream/index.html" class="card">
+        <span class="card-icon">🍦</span>
+        <span class="card-title">Ice Cream dari Rohman</span>
+        <span class="card-description">Hadiah manis yang menyegarkan hari kamu</span>
+      </a>
+      
+      <a href="projects/pesan-untuk-puput/index.html" class="card">
+        <span class="card-icon">💌</span>
+        <span class="card-title">Surat dari Rohman</span>
+        <span class="card-description">Pesan yang suatu saat kamu butuh kalo lagi cape sama dunia</span>
+      </a>
+      
+      <a href="projects/universe-for-putri/galaxy/index.html" class="card">
+        <span class="card-icon">🌌</span>
+        <span class="card-title">Universe dari Rohman</span>
+        <span class="card-description">Galaksi yang dan indah seperti mata kamu</span>
+      </a>
+    </div>
+  </div>
+
+  <audio id="bgMusic" src="assets/semua-aku-dirayakan.mp3"></audio>
+
+  <footer>Dibuat dengan oleh Rohman</footer>
+
+  <script>
+    const loginPage = document.getElementById('loginPage');
+    const dashboardPage = document.getElementById('dashboardPage');
+    const loginForm = document.getElementById('loginForm');
+    const musicBtn = document.getElementById('musicBtn');
+    const bgMusic = document.getElementById('bgMusic');
+    let isLoggedIn = false;
+
+    // Login Handler
+    loginForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+
+      if (username === 'puput' && password === 'puputcantik123') {
+        isLoggedIn = true;
+        loginPage.style.display = 'none';
+        dashboardPage.classList.add('active');
+      } else {
+        alert('Username atau password salah! Silakan coba lagi.');
+      }
+    });
+
+    // Music Handler
+    musicBtn.addEventListener('click', () => {
+      bgMusic.play();
+      musicBtn.style.display = 'none';
+    });
+
+    // Auto-play music if returning from session (optional)
+    if (isLoggedIn) {
+      setTimeout(() => {
+        bgMusic.play().catch(() => {
+          // Browser may block auto-play
+        });
+      }, 1000);
+    }
+  </script>
+</body>
+</html>
