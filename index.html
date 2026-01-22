@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Welcome Portal</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <title>All Project for Luna ✨</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Caveat:wght@400;700&display=swap" rel="stylesheet">
   <style>
     * {
       margin: 0;
@@ -38,7 +38,6 @@
       overflow: hidden;
     }
 
-    /* Animated Background */
     body::before {
       content: '';
       position: absolute;
@@ -55,7 +54,6 @@
       100% { transform: translate(50px, 50px); }
     }
 
-    /* Floating Orbs */
     .orb {
       position: absolute;
       border-radius: 50%;
@@ -98,7 +96,6 @@
       66% { transform: translate(-20px, 20px) scale(0.9); }
     }
 
-    /* Container */
     .container {
       position: relative;
       z-index: 1;
@@ -107,7 +104,6 @@
       padding: 20px;
     }
 
-    /* Login Page */
     .login-container {
       display: flex;
       align-items: center;
@@ -213,7 +209,6 @@
       transform: translateY(0);
     }
 
-    /* Dashboard */
     .dashboard {
       display: none;
       animation: fadeIn 0.6s ease-out;
@@ -230,7 +225,7 @@
 
     .dashboard-header {
       text-align: center;
-      margin-bottom: 50px;
+      margin-bottom: 30px;
       animation: slideDown 0.6s ease-out;
     }
 
@@ -258,6 +253,130 @@
     .dashboard-header p {
       color: var(--text-secondary);
       font-size: 16px;
+    }
+
+    /* Polaroid Photo Styles */
+    .polaroid-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 40px 0;
+      perspective: 1000px;
+    }
+
+    .polaroid {
+      position: relative;
+      background: #ffffff;
+      padding: 16px;
+      padding-bottom: 60px;
+      box-shadow: 
+        0 10px 40px rgba(0, 0, 0, 0.3),
+        0 0 0 1px rgba(0, 0, 0, 0.1);
+      border-radius: 4px;
+      transform: rotate(-3deg);
+      animation: polaroidFloat 6s ease-in-out infinite;
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+
+    .polaroid:hover {
+      transform: rotate(0deg) scale(1.05);
+      animation-play-state: paused;
+    }
+
+    @keyframes polaroidFloat {
+      0%, 100% { 
+        transform: rotate(-3deg) translateY(0px);
+      }
+      50% { 
+        transform: rotate(2deg) translateY(-20px);
+      }
+    }
+
+    .polaroid-photo {
+      width: 280px;
+      height: 280px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 80px;
+      border-radius: 2px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .polaroid-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .polaroid-caption {
+      position: absolute;
+      bottom: 12px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      font-family: 'Caveat', cursive;
+      font-size: 24px;
+      color: #333;
+      font-weight: 700;
+    }
+
+    .hearts-decoration {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      top: 0;
+      left: 0;
+    }
+
+    .heart {
+      position: absolute;
+      font-size: 20px;
+      opacity: 0;
+      animation: floatHeart 4s ease-in-out infinite;
+    }
+
+    .heart:nth-child(1) {
+      left: -30px;
+      top: 20%;
+      animation-delay: 0s;
+    }
+
+    .heart:nth-child(2) {
+      right: -30px;
+      top: 40%;
+      animation-delay: 1s;
+    }
+
+    .heart:nth-child(3) {
+      left: -25px;
+      bottom: 30%;
+      animation-delay: 2s;
+    }
+
+    .heart:nth-child(4) {
+      right: -25px;
+      bottom: 20%;
+      animation-delay: 3s;
+    }
+
+    @keyframes floatHeart {
+      0% {
+        opacity: 0;
+        transform: translateY(0) rotate(0deg);
+      }
+      50% {
+        opacity: 0.8;
+      }
+      100% {
+        opacity: 0;
+        transform: translateY(-30px) rotate(15deg);
+      }
     }
 
     .music-control {
@@ -289,6 +408,15 @@
     .music-btn::before {
       content: '🎵';
       font-size: 18px;
+    }
+
+    .music-btn.playing {
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      border-color: var(--primary);
+    }
+
+    .music-btn.playing::before {
+      content: '⏸️';
     }
 
     .cards-grid {
@@ -382,7 +510,6 @@
       z-index: 10;
     }
 
-    /* Responsive */
     @media (max-width: 768px) {
       .login-box {
         padding: 40px 30px;
@@ -390,6 +517,20 @@
 
       .dashboard-header h1 {
         font-size: 32px;
+      }
+
+      .polaroid-photo {
+        width: 240px;
+        height: 240px;
+      }
+
+      .polaroid {
+        padding: 12px;
+        padding-bottom: 50px;
+      }
+
+      .polaroid-caption {
+        font-size: 20px;
       }
 
       .cards-grid {
@@ -403,7 +544,6 @@
   <div class="orb orb2"></div>
   <div class="orb orb3"></div>
 
-  <!-- Login Page -->
   <div class="login-container" id="loginPage">
     <div class="login-box">
       <h2>Selamat Datang! 👋</h2>
@@ -422,19 +562,34 @@
     </div>
   </div>
 
-  <!-- Dashboard -->
   <div class="container dashboard" id="dashboardPage">
     <div class="dashboard-header">
-      <h1>Selamat Datang, <span id="userName">Puput</span>! ✨</h1>
+      <h1>Selamat Datang, <span id="userName">Luna</span>! ✨</h1>
       <p>Website ini isinya tentang semua project yang aku pernah buat untuk kamu</p>
+    </div>
+
+    <!-- Polaroid Photo Section -->
+    <div class="polaroid-container">
+      <div class="polaroid">
+        <div class="polaroid-photo">
+  <img src="assets/luna.jpeg" alt="Luna">
+</div>
+        <div class="polaroid-caption">Luna Rizky Febriyanti</div>
+        <div class="hearts-decoration">
+          <div class="heart">💕</div>
+          <div class="heart">💖</div>
+          <div class="heart">💗</div>
+          <div class="heart">💝</div>
+        </div>
+      </div>
     </div>
 
     <div class="music-control">
       <button class="music-btn" id="musicBtn">Putar Musik</button>
     </div>
-
+    
     <div class="cards-grid">
-      <a href="projects/gift-for-putri/kado/index.html" class="card">
+      <a href="projects/kado/index.html" class="card">
         <span class="card-icon">💐</span>
         <span class="card-title">Bunga dari Rohman</span>
         <span class="card-description">Buket bunga virtual yang indah, dibuat khusus untuk kamu</span>
@@ -446,13 +601,13 @@
         <span class="card-description">Hadiah manis yang menyegarkan hari kamu</span>
       </a>
       
-      <a href="projects/pesan-untuk-puput/index.html" class="card">
+      <a href="projects/letter-project/index.html" class="card">
         <span class="card-icon">💌</span>
         <span class="card-title">Surat dari Rohman</span>
         <span class="card-description">Pesan yang suatu saat kamu butuh kalo lagi cape sama dunia</span>
       </a>
       
-      <a href="projects/universe-for-putri/galaxy/index.html" class="card">
+      <a href="projects/galaxy/index.html" class="card">
         <span class="card-icon">🌌</span>
         <span class="card-title">Universe dari Rohman</span>
         <span class="card-description">Galaksi yang dan indah seperti mata kamu</span>
@@ -460,9 +615,11 @@
     </div>
   </div>
 
-  <audio id="bgMusic" src="assets/semua-aku-dirayakan.mp3"></audio>
+  <audio id="bgMusic" preload="auto">
+    <source src="assets/semua-aku-dirayakan.mp3" type="audio/mpeg">
+  </audio>
 
-  <footer>Dibuat dengan oleh Rohman</footer>
+  <footer>Dibuat oleh Rohman</footer>
 
   <script>
     const loginPage = document.getElementById('loginPage');
@@ -470,37 +627,77 @@
     const loginForm = document.getElementById('loginForm');
     const musicBtn = document.getElementById('musicBtn');
     const bgMusic = document.getElementById('bgMusic');
-    let isLoggedIn = false;
+    let isPlaying = false;
 
-    // Login Handler
+    function initAudio() {
+      bgMusic.load();
+      bgMusic.volume = 0.7;
+    }
+
     loginForm.addEventListener('submit', (e) => {
       e.preventDefault();
-      const username = document.getElementById('username').value;
+      const username = document.getElementById('username').value.trim();
       const password = document.getElementById('password').value;
 
-      if (username === 'puput' && password === 'puputcantik123') {
-        isLoggedIn = true;
+      if (username.toLowerCase() === 'luna' && password === 'lunacantik123') {
+        initAudio();
+        
         loginPage.style.display = 'none';
         dashboardPage.classList.add('active');
+        
+        document.getElementById('userName').textContent = username;
       } else {
         alert('Username atau password salah! Silakan coba lagi.');
       }
     });
 
-    // Music Handler
-    musicBtn.addEventListener('click', () => {
-      bgMusic.play();
-      musicBtn.style.display = 'none';
+    musicBtn.addEventListener('click', async () => {
+      try {
+        if (isPlaying) {
+          bgMusic.pause();
+          isPlaying = false;
+          musicBtn.textContent = 'Putar Musik';
+          musicBtn.classList.remove('playing');
+        } else {
+          await bgMusic.play();
+          isPlaying = true;
+          musicBtn.textContent = 'Jeda Musik';
+          musicBtn.classList.add('playing');
+        }
+      } catch (error) {
+        console.error('Error playing audio:', error);
+        alert('Tidak bisa memutar musik. Coba lagi!');
+      }
     });
 
-    // Auto-play music if returning from session (optional)
-    if (isLoggedIn) {
-      setTimeout(() => {
-        bgMusic.play().catch(() => {
-          // Browser may block auto-play
-        });
-      }, 1000);
-    }
+    bgMusic.addEventListener('ended', () => {
+      bgMusic.currentTime = 0;
+      bgMusic.play().catch(err => {
+        console.error('Error looping audio:', err);
+        isPlaying = false;
+        musicBtn.textContent = 'Putar Musik';
+        musicBtn.classList.remove('playing');
+      });
+    });
+
+    bgMusic.addEventListener('pause', () => {
+      if (isPlaying) {
+        isPlaying = false;
+        musicBtn.textContent = 'Putar Musik';
+        musicBtn.classList.remove('playing');
+      }
+    });
+
+    bgMusic.addEventListener('play', () => {
+      isPlaying = true;
+      musicBtn.textContent = 'Jeda Musik';
+      musicBtn.classList.add('playing');
+    });
+
+    document.addEventListener('touchstart', function unlockAudio() {
+      bgMusic.load();
+      document.removeEventListener('touchstart', unlockAudio);
+    }, { once: true });
   </script>
 </body>
 </html>
