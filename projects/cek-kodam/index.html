@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cek Khodam Gen Z 🔮</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 30px;
+            padding: 40px;
+            max-width: 500px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            color: #667eea;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .emoji-header {
+            font-size: 3em;
+            margin-bottom: 15px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 1.1em;
+            margin-bottom: 10px;
+        }
+
+        .input-group {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            color: #333;
+            font-weight: 600;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        input {
+            width: 100%;
+            padding: 15px 20px;
+            border: 3px solid #e0e0e0;
+            border-radius: 15px;
+            font-size: 1.1em;
+            transition: all 0.3s;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+        }
+
+        .btn {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 15px;
+            font-size: 1.2em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .result {
+            margin-top: 30px;
+            padding: 25px;
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            border-radius: 20px;
+            text-align: center;
+            display: none;
+            animation: slideIn 0.5s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .result h2 {
+            color: #764ba2;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+
+        .khodam-name {
+            font-size: 2em;
+            color: #ff6b6b;
+            font-weight: bold;
+            margin: 15px 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .khodam-emoji {
+            font-size: 4em;
+            margin: 20px 0;
+            animation: bounce 1s ease-in-out;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        .khodam-desc {
+            color: #555;
+            font-size: 1.1em;
+            line-height: 1.6;
+            margin-top: 15px;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            color: #667eea;
+            font-size: 1.2em;
+            margin-top: 20px;
+        }
+
+        .loading-dots {
+            display: inline-block;
+            animation: dots 1.5s infinite;
+        }
+
+        @keyframes dots {
+            0%, 20% { content: '.'; }
+            40% { content: '..'; }
+            60%, 100% { content: '...'; }
+        }
+
+        .sparkles {
+            position: fixed;
+            pointer-events: none;
+            animation: sparkle 1s ease-out forwards;
+        }
+
+        @keyframes sparkle {
+            0% { transform: scale(0) rotate(0deg); opacity: 1; }
+            100% { transform: scale(1.5) rotate(360deg); opacity: 0; }
+        }
+
+        .music-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #8599f3 0%, #71dcff 100%);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 1.8em;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            transition: all 0.3s;
+            z-index: 1000;
+        }
+
+        .music-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+        }
+
+        .music-btn.playing {
+            animation: pulse 1s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="emoji-header">🔮✨</div>
+            <h1>Cek Khodam</h1>
+            <p class="subtitle">Dibuat oleh Rohman</p>
+            <p style="color: #999; font-size: 0.9em;">Siapa khodam yang nemenin kamu?</p>
+        </div>
+
+        <div class="input-group">
+            <label for="nama">Masukkan Nama Kamu:</label>
+            <input type="text" id="nama" placeholder="contoh: Luna Cantik" autocomplete="off">
+        </div>
+
+        <button class="btn" onclick="cekKhodam()">Cek Khodam Sekarang! 🌟</button>
+
+        <div class="loading" id="loading">
+            <p>Menghubungi alam gaib<span class="loading-dots">...</span></p>
+        </div>
+
+        <div class="result" id="result">
+            <h2>Khodam Kamu Adalah:</h2>
+            <div class="khodam-emoji" id="khodamEmoji"></div>
+            <div class="khodam-name" id="khodamName"></div>
+            <div class="khodam-desc" id="khodamDesc"></div>
+        </div>
+    </div>
+
+    <button class="music-btn" id="musicBtn" onclick="toggleMusic()" title="Play/Pause Music">🎵</button>
+    <audio id="bgMusic" loop>
+        <source src="assets/penjaga-hati.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        const khodamList = [
+            { name: "Kucing Oren Pemalas", emoji: "🐱", desc: "Khodam yang vibesnya santai banget. Bikin kamu selalu pengen rebahan tapi tetep produktif somehow." },
+            { name: "Boba Milk Tea", emoji: "🧋", desc: "Aesthetic banget! Kamu pasti suka foto-foto dan punya taste yang oke punya." },
+            { name: "Butterfly Glowing", emoji: "🦋", desc: "Glowing era banget! Kamu lagi dalam fase berkembang jadi versi terbaik diri sendiri." },
+            { name: "Unicorn Pink Sparkle", emoji: "🦄", desc: "Main character energy! Selalu jadi pusat perhatian dengan cara yang positif." },
+            { name: "Matcha Latte Premium", emoji: "🍵", desc: "Sophisticated dan tenang. Kamu orangnya kalem tapi dalam hatinya fierce banget." },
+            { name: "Cherry Blossom Jepang", emoji: "🌸", desc: "Soft girl vibes! Kamu orangnya lembut tapi kuat menghadapi badai kehidupan." },
+            { name: "Cloudnya Teletubbies", emoji: "☁️", desc: "Dreamy dan imaginative. Kepala kamu penuh ide-ide gila yang kreatif." },
+            { name: "Donat Strawberry", emoji: "🍩", desc: "Sweet personality! Semua orang suka sama kamu karena kamu bikin hari mereka lebih baik." },
+            { name: "Llama Dancing", emoji: "🦙", desc: "Unpredictable dan fun! Gabisa ditebak tapi pasti seru kalo lagi bareng." },
+            { name: "Fairy Lights", emoji: "✨", desc: "Bikin suasana jadi cozy. Kehadiran kamu selalu bikin orang merasa nyaman." },
+            { name: "Cactus Imut", emoji: "🌵", desc: "Tough but cute! Kelihatan kalem padahal dalemnya strong woman banget." },
+            { name: "Strawberry Shortcake", emoji: "🍰", desc: "Manis dan menggemaskan. Tapi jangan salah, kamu punya power tersendiri." },
+            { name: "Hello Kitty Vintage", emoji: "🎀", desc: "Cute and classy! Selera kamu timeless, gabisa dilawan deh." },
+            { name: "Moonlight Sparkle", emoji: "🌙", desc: "Mysterious tapi menarik. Orang selalu penasaran sama kamu." },
+            { name: "Macaron Paris", emoji: "🍪", desc: "Fancy dan punya standard tinggi. Kamu tau apa yang kamu mau dalam hidup." },
+            { name: "Flamingo Pink", emoji: "🦩", desc: "Stand out dari yang lain. Kamu berani jadi diri sendiri tanpa peduli judgement." },
+            { name: "Sunflower Happy", emoji: "🌻", desc: "Positive vibes only! Kamu selalu bisa liat sisi baik dari segala situasi." },
+            { name: "Panda Ngantuk", emoji: "🐼", desc: "Relatable queen! Kamu mood banget sama struggle everyday life Gen Z." },
+            { name: "Avocado Toast", emoji: "🥑", desc: "Healthy lifestyle advocate. Kamu concern sama well-being dan self-care." },
+            { name: "Koala Peluk Pohon", emoji: "🐨", desc: "Clingy but in a cute way. Kamu sayang banget sama orang-orang terdekat." },
+            { name: "Kosong (Gapunya)", emoji: "👻", desc: "Plot twist! Kamu independent woman yang gaperlu khodam. Self-made queen!" },
+            { name: "Sendal Jepit Swallow", emoji: "🩴", desc: "Down to earth dan humble. Meski punya banyak achievement, tetep rendah hati." },
+            { name: "Ice Cream Melted", emoji: "🍦", desc: "Soft hearted banget. Gampang melt kalo ada yang baik sama kamu." },
+            { name: "Pocky Strawberry", emoji: "🍡", desc: "Cute dan fun! Kamu bikin hangout jadi lebih seru." },
+            { name: "Wifi Full Bar", emoji: "📶", desc: "Always connected! Kamu selalu update sama trends dan gabakal ketinggalan info." }
+        ];
+
+        function cekKhodam() {
+            const nama = document.getElementById('nama').value.trim();
+            
+            if (nama === '') {
+                alert('Eh tunggu, masukin nama dulu dong! 😅');
+                return;
+            }
+
+            // Sembunyikan result lama
+            document.getElementById('result').style.display = 'none';
+            
+            // Tampilkan loading
+            document.getElementById('loading').style.display = 'block';
+
+            // Simulasi loading
+            setTimeout(() => {
+                document.getElementById('loading').style.display = 'none';
+                
+                // Generate khodam berdasarkan nama
+                let hash = 0;
+                for (let i = 0; i < nama.length; i++) {
+                    hash = nama.charCodeAt(i) + ((hash << 5) - hash);
+                }
+                const index = Math.abs(hash) % khodamList.length;
+                const khodam = khodamList[index];
+
+                // Tampilkan hasil
+                document.getElementById('khodamEmoji').textContent = khodam.emoji;
+                document.getElementById('khodamName').textContent = khodam.name;
+                document.getElementById('khodamDesc').textContent = khodam.desc;
+                document.getElementById('result').style.display = 'block';
+
+                // Tambahkan sparkle effect
+                createSparkles();
+            }, 2000);
+        }
+
+        function createSparkles() {
+            for (let i = 0; i < 20; i++) {
+                setTimeout(() => {
+                    const sparkle = document.createElement('div');
+                    sparkle.className = 'sparkles';
+                    sparkle.textContent = '✨';
+                    sparkle.style.left = Math.random() * window.innerWidth + 'px';
+                    sparkle.style.top = Math.random() * window.innerHeight + 'px';
+                    sparkle.style.fontSize = (Math.random() * 20 + 10) + 'px';
+                    document.body.appendChild(sparkle);
+
+                    setTimeout(() => sparkle.remove(), 1000);
+                }, i * 100);
+            }
+        }
+
+        // Enter key support
+        document.getElementById('nama').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                cekKhodam();
+            }
+        });
+
+        // Music player
+        let isPlaying = false;
+        const bgMusic = document.getElementById('bgMusic');
+        const musicBtn = document.getElementById('musicBtn');
+
+        function toggleMusic() {
+            if (isPlaying) {
+                bgMusic.pause();
+                musicBtn.textContent = '🎵';
+                musicBtn.classList.remove('playing');
+            } else {
+                bgMusic.play();
+                musicBtn.textContent = '🎶';
+                musicBtn.classList.add('playing');
+            }
+            isPlaying = !isPlaying;
+        }
+    </script>
+</body>
+</html>
